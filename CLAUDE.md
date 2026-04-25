@@ -26,7 +26,7 @@ No test framework is configured.
 
 - Single-component React 19 app. All UI, state, derived totals, filters, and the add-transaction form live in `src/App.jsx`. `src/main.jsx` mounts it in `StrictMode`.
 - Transactions are held in `useState` as an in-memory seed array — there is no persistence, routing, or API layer.
-- `amount` is stored as a **string** (from the `<input type="number">` value). The income/expense reducers do `sum + t.amount`, which concatenates rather than sums — this is the intentional bug referenced in the README. Keep this in mind when touching totals, filters, or new features that read `amount`.
+- `amount` is stored as a **number**. `<input type="number">` returns a string, so `handleSubmit` coerces with `Number(amount)` before adding a transaction — preserve this when adding new write paths so the totals reducers keep summing numerically.
 
 ## ESLint specifics
 
