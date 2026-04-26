@@ -1,11 +1,70 @@
+:root {
+  --paper: #f3ede1;
+  --paper-deep: #ebe2d0;
+  --paper-shadow: #e3d8c2;
+  --ink: #1a1612;
+  --ink-soft: #4a423a;
+  --ink-faint: #8a8278;
+  --rule: rgba(26, 22, 18, 0.16);
+  --rule-soft: rgba(26, 22, 18, 0.08);
+  --oxblood: #8b1e1e;
+  --oxblood-deep: #6b1414;
+  --forest: #2f4a32;
+  --ochre: #b8893a;
+
+  --display: "Fraunces", "Times New Roman", serif;
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --sans: "Instrument Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html,
 body {
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  color: #333;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }

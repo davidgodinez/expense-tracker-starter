@@ -29,17 +29,42 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Finance Tracker</h1>
-      <p className="subtitle">Track your income and expenses</p>
+      <header className="masthead">
+        <div className="dateline">
+          <span className="masthead-name">The Ledger</span>
+          <span>Vol. I — No. 04</span>
+          <span className="masthead-rule" aria-hidden="true" />
+          <span>April 25, 2026</span>
+        </div>
+        <h1 className="title">Finance <em>Tracker</em></h1>
+        <p className="subtitle">
+          A quiet accounting of <em>income</em> &amp; <em>expenditure</em>, kept by hand.
+        </p>
+      </header>
 
-      <Summary transactions={transactions} />
-      <SpendingChart transactions={transactions} />
-      <TransactionForm categories={CATEGORIES} onAdd={addTransaction} />
-      <TransactionList
-        transactions={transactions}
-        categories={CATEGORIES}
-        onDelete={deleteTransaction}
-      />
+      <section className="section">
+        <span className="section-label">§ I — At a glance</span>
+        <Summary transactions={transactions} />
+      </section>
+
+      <section className="section">
+        <span className="section-label">§ II — Spending, by category</span>
+        <SpendingChart transactions={transactions} />
+      </section>
+
+      <section className="section">
+        <span className="section-label">§ III — Record an entry</span>
+        <TransactionForm categories={CATEGORIES} onAdd={addTransaction} />
+      </section>
+
+      <section className="section">
+        <span className="section-label">§ IV — The ledger</span>
+        <TransactionList
+          transactions={transactions}
+          categories={CATEGORIES}
+          onDelete={deleteTransaction}
+        />
+      </section>
     </div>
   );
 }
