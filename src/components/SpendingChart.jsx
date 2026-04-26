@@ -1,6 +1,6 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 
-const COLORS = ['#8b1e1e', '#2f4a32', '#b8893a', '#3d4a5a', '#5a2d4a', '#b85c3a', '#8a7560'];
+const COLORS = ['#e63329', '#2747e8', '#f5c518', '#111111', '#e63329', '#2747e8', '#f5c518'];
 
 function SpendingChart({ transactions }) {
   const totalsByCategory = transactions
@@ -18,13 +18,13 @@ function SpendingChart({ transactions }) {
       {data.length === 0 ? (
         <p className="chart-empty">— no expenses recorded —</p>
       ) : (
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={320}>
           <BarChart data={data} margin={{ top: 16, right: 8, left: -8, bottom: 8 }}>
             <CartesianGrid strokeDasharray="0" vertical={false} />
             <XAxis
               dataKey="name"
               tickLine={false}
-              axisLine={{ stroke: '#1a1612' }}
+              axisLine={{ stroke: '#111111', strokeWidth: 2 }}
               dy={10}
             />
             <YAxis
@@ -34,23 +34,22 @@ function SpendingChart({ transactions }) {
               tickFormatter={(v) => `$${v}`}
             />
             <Tooltip
-              cursor={{ fill: 'rgba(26,22,18,0.05)' }}
+              cursor={{ fill: 'rgba(245, 197, 24, 0.25)' }}
               formatter={(value) => [`$${value.toLocaleString()}`, 'spent']}
               contentStyle={{
-                background: '#f3ede1',
-                border: '1px solid #1a1612',
+                background: '#ffffff',
+                border: '3px solid #111111',
                 borderRadius: 0,
-                fontFamily: 'Instrument Sans, sans-serif',
+                fontFamily: 'DM Mono, monospace',
                 fontSize: 11,
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
                 padding: '10px 14px',
-                boxShadow: '4px 4px 0 rgba(26,22,18,0.08)',
               }}
-              labelStyle={{ color: '#1a1612', fontWeight: 600, marginBottom: 4 }}
-              itemStyle={{ color: '#8b1e1e', padding: 0 }}
+              labelStyle={{ color: '#111111', fontWeight: 700, marginBottom: 4 }}
+              itemStyle={{ color: '#e63329', padding: 0, fontWeight: 600 }}
             />
-            <Bar dataKey="value" maxBarSize={64}>
+            <Bar dataKey="value" maxBarSize={72}>
               {data.map((entry, index) => (
                 <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
               ))}

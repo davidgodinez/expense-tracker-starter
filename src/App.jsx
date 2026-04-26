@@ -29,36 +29,74 @@ function App() {
 
   return (
     <div className="app">
+      <div className="geo-shape geo-shape--circle-yellow" aria-hidden="true" />
+      <div className="geo-shape geo-shape--triangle-red" aria-hidden="true" />
+      <div className="geo-shape geo-shape--bar" aria-hidden="true" />
+      <div className="geo-shape geo-shape--ring" aria-hidden="true" />
+      <div className="geo-shape geo-shape--square-blue" aria-hidden="true" />
+
       <header className="masthead">
-        <div className="dateline">
-          <span className="masthead-name">The Ledger</span>
-          <span>Vol. I — No. 04</span>
-          <span className="masthead-rule" aria-hidden="true" />
-          <span>April 25, 2026</span>
+        <div className="masthead-meta">
+          <span className="dot" />
+          <span>Bauhaus Ledger</span>
+          <span className="pipe" />
+          <span className="dot dot--blue" />
+          <span>No. 04 / Vol. I</span>
+          <span className="pipe" />
+          <span className="dot dot--yellow" />
+          <span>Apr 25 — 2026</span>
         </div>
-        <h1 className="title">Finance <em>Tracker</em></h1>
-        <p className="subtitle">
-          A quiet accounting of <em>income</em> &amp; <em>expenditure</em>, kept by hand.
-        </p>
+
+        <div className="title-row">
+          <h1 className="title">
+            FIN<span className="accent-red">ANCE</span>
+            <br />
+            TRACK<span className="accent-blue">ER</span>
+          </h1>
+          <div className="title-mark" aria-hidden="true">
+            <div className="square" />
+            <div className="circle" />
+            <div className="tri" />
+          </div>
+        </div>
+
+        <div className="subtitle">
+          <span className="subtitle-key">Form / Function</span>
+          <span className="subtitle-text">
+            A geometric account of <strong>income</strong> and <strong>expenditure</strong>, composed in primaries.
+          </span>
+        </div>
       </header>
 
       <section className="section">
-        <span className="section-label">§ I — At a glance</span>
+        <span className="section-label">
+          <span className="num">01</span>
+          <span>At a glance</span>
+        </span>
         <Summary transactions={transactions} />
       </section>
 
       <section className="section">
-        <span className="section-label">§ II — Spending, by category</span>
+        <span className="section-label">
+          <span className="num">02</span>
+          <span>Spending — by category</span>
+        </span>
         <SpendingChart transactions={transactions} />
       </section>
 
       <section className="section">
-        <span className="section-label">§ III — Record an entry</span>
+        <span className="section-label">
+          <span className="num">03</span>
+          <span>Record an entry</span>
+        </span>
         <TransactionForm categories={CATEGORIES} onAdd={addTransaction} />
       </section>
 
       <section className="section">
-        <span className="section-label">§ IV — The ledger</span>
+        <span className="section-label">
+          <span className="num">04</span>
+          <span>The ledger</span>
+        </span>
         <TransactionList
           transactions={transactions}
           categories={CATEGORIES}
