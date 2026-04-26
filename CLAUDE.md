@@ -27,7 +27,7 @@ No test framework is configured.
 - React 19 app mounted by `src/main.jsx` in `StrictMode`. `src/App.jsx` is the only stateful owner of the `transactions` list and composes three child components from `src/components/`:
   - `Summary` — receives `transactions` and derives `totalIncome` / `totalExpenses` / `balance` itself.
   - `TransactionForm` — owns its own form fields (description, amount, type, category) and reports completed transactions back to `App` via an `onAdd(transaction)` callback. The form, not the parent, builds the new transaction object (id, ISO date, numeric amount).
-  - `TransactionList` — owns its own filter state (`filterType`, `filterCategory`) and renders the table.
+  - `TransactionList` — owns its own filter state (`filterType`, `filterCategory`) and renders the table. Receives an `onDelete(id)` callback from `App` for the per-row Delete button (guarded by `window.confirm`).
 - The `CATEGORIES` list is a module-level constant in `App.jsx` and is passed as a prop to both `TransactionForm` and `TransactionList`. Add new categories there.
 - Transactions are held in `useState` as an in-memory seed array — there is no persistence, routing, or API layer.
 - `amount` is stored as a **number**. `<input type="number">` returns a string, so `TransactionForm` coerces with `Number(amount)` before calling `onAdd` — preserve this in any new write path so `Summary`'s totals keep summing numerically.
