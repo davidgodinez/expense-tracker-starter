@@ -24,9 +24,13 @@ No test framework is configured.
 
 ## Architecture
 
-- Single-component React 19 app. All UI, state, derived totals, filters, and the add-transaction form live in `src/App.jsx`. `src/main.jsx` mounts it in `StrictMode`.
+- React 19 app mounted by `src/main.jsx` in `StrictMode`. `src/App.jsx` is the only stateful owner of the `transactions` list and composes three child components from `src/components/`:
+  - `Summary` — receives `transactions` and derives `totalIncome` / `totalExpenses` / `balance` itself.
+  - `TransactionForm` — owns its own form fields (description, amount, type, category) and reports completed transactions back to `App` via an `onAdd(transaction)` callback. The form, not the parent, builds the new transaction object (id, ISO date, numeric amount).
+  - `TransactionList` — owns its own filter state (`filterType`, `filterCategory`) and renders the table.
+- The `CATEGORIES` list is a module-level constant in `App.jsx` and is passed as a prop to both `TransactionForm` and `TransactionList`. Add new categories there.
 - Transactions are held in `useState` as an in-memory seed array — there is no persistence, routing, or API layer.
-- `amount` is stored as a **number**. `<input type="number">` returns a string, so `handleSubmit` coerces with `Number(amount)` before adding a transaction — preserve this when adding new write paths so the totals reducers keep summing numerically.
+- `amount` is stored as a **number**. `<input type="number">` returns a string, so `TransactionForm` coerces with `Number(amount)` before calling `onAdd` — preserve this in any new write path so `Summary`'s totals keep summing numerically.
 
 ## ESLint specifics
 
